@@ -1,4 +1,4 @@
-package com.hibernate.jdbc;
+package com.tutorial.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
