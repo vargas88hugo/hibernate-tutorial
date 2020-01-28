@@ -1,4 +1,4 @@
-package com.tutorial.hibernate.demo;
+package com.tutorial.hibernate.demo02;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 import com.tutorial.hibernate.demo.entity.Instructor;
 import com.tutorial.hibernate.demo.entity.InstructorDetail;
 
-public class GetInstructorDetailDemo {
+public class DeleteInstructorDemo {
 	
 	public static void main(String[] args) {
 		
@@ -23,27 +23,29 @@ public class GetInstructorDetailDemo {
 		
 		try {
 			// Start a transaction
-			session.beginTransaction();;
+			session.beginTransaction();
 			
-			// Get the instructor detail object
-			int theId = 22222;
-			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, theId);
+			// Get instructor by primary key
+			int theId = 1;
+			Instructor tempInstructor = session.get(Instructor.class, theId);
+			System.out.println("Found Instructor: " + tempInstructor);
 			
-			// Print the instructor detail object
-			System.out.println("tempInstructorDetail: " + tempInstructorDetail);
+			// Delete the instructors
+			if (tempInstructor != null) {
+				System.out.println("Deleting: " + tempInstructor);
 			
-			// Print the associated instructor
-			System.out.println("The associated instructor: " + tempInstructorDetail.getInstructor());
+				/**
+				 * Note: we also delete associated "details" object
+				 * because of CascadeType.ALL
+				 */
+				session.delete(tempInstructor);
+			}
 			
 			// Commit transaction
 			session.getTransaction().commit();
 			System.out.println("Done!!!");
 			
-		} catch (Exception exc) {
-			exc.printStackTrace();
 		} finally {
-			session.close();
-			
 			factory.close();
 		}
 	}

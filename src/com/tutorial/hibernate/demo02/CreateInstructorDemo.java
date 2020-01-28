@@ -1,4 +1,4 @@
-package com.tutorial.hibernate.demo;
+package com.tutorial.hibernate.demo02;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

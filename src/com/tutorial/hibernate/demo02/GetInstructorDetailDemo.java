@@ -1,4 +1,4 @@
-package com.tutorial.hibernate.demo;
+package com.tutorial.hibernate.demo02;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 import com.tutorial.hibernate.demo.entity.Instructor;
 import com.tutorial.hibernate.demo.entity.InstructorDetail;
 
-public class DeleteInstructorDetailDemo {
+public class GetInstructorDetailDemo {
 	
 	public static void main(String[] args) {
 		
@@ -34,16 +34,6 @@ public class DeleteInstructorDetailDemo {
 			
 			// Print the associated instructor
 			System.out.println("The associated instructor: " + tempInstructorDetail.getInstructor());
-			
-			// Now let's delete the instructor detail
-			System.out.println("Deleting tempInstructorDetail: " + tempInstructorDetail);
-			
-			session.delete(tempInstructorDetail);
-			
-			// Remove the associated object reference break bi-directional link
-			tempInstructorDetail.getInstructor().setInstructorDetail(null);
-			
-			session.delete(tempInstructorDetail);
 			
 			// Commit transaction
 			session.getTransaction().commit();

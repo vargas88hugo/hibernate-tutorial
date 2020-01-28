@@ -1,4 +1,4 @@
-package com.tutorial.hibernate.demo;
+package com.tutorial.hibernate.demo01;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.tutorial.hibernate.demo.entity.Student;
 
-public class UpdateStudentDemo {
+public class DeleteStudentDemo {
 	
 	public static void main(String[] args) {
 		
@@ -32,26 +32,17 @@ public class UpdateStudentDemo {
 			// Retrieve student based on the id: primary key
 			System.out.println("\nGetting student with id: " + studentId);
 			Student myStudent = session.get(Student.class, studentId);
-			System.out.println("Updating student...");
+
+			// Delete the student
+			// System.out.println("Deleting student: " + myStudent);
+			// session.delete(myStudent);
 			
-			myStudent.setFirstName("Scooby");
-			
-			// Commit the transaction
-			session.getTransaction().commit();
-			
-			// New Code
-			
-			session = factory.getCurrentSession();
-			session.beginTransaction();
-			
-			// update email for all students
-			System.out.println("Update email for all students");
-			
-			session.createQuery("update Student set email='foo@gmail.com'")
-								.executeUpdate();
+			// Delete the student id = 2
+			System.out.println("Deleting student id = 2");
+			session.createQuery("delete from Student where id=2").executeUpdate();
 			
 			// Commit the transaction
-			session.getTransaction().commit();
+			session.getTransaction().commit();			
 			
 			System.out.println("Done!!!");
 			

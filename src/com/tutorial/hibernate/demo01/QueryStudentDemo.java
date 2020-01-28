@@ -1,4 +1,4 @@
-package com.tutorial.hibernate.demo;
+package com.tutorial.hibernate.demo01;
 
 import java.util.List;
 
